@@ -1,0 +1,4 @@
+377b80c245b1e58b30ec0ad40a8fd82da50bff95  src/cadena.cpp
+8d9a6d3e913f9dd1becdd1a4c8df8ae99631fc3e  src/colCadenas.cpp
+48b3fa29538525de9657fcf43a633f419e1f17ee  src/iterador.cpp
+4812aad8e973c8d464fca5ba017d7d6c67bb1560  src/aplicaciones.cpp
