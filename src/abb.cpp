@@ -81,7 +81,15 @@ TInfo mayorEnAbb(TAbb abb)
     return ret;
 }
 
-TAbb consAbb(TInfo dato, TAbb izq, TAbb der) { return NULL; }
+TAbb consAbb(TInfo dato, TAbb izq, TAbb der) { 
+    
+    TAbb abb = new _rep_abb;
+    abb->dato = dato;
+    abb->izq = izq;
+    abb->der = der;
+    return abb;
+
+}
 
 TAbb insertarEnAbb(TInfo dato, TAbb abb)
 {
