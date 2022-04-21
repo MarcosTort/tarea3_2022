@@ -62,7 +62,7 @@ TInfo menorEnAbb(TAbb abb)
     }
     else
     {
-        ret = mayorEnAbb(abb->izq);
+        ret = menorEnAbb(abb->izq);
     }
     return ret;
 }
