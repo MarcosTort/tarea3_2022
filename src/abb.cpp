@@ -83,7 +83,7 @@ TInfo mayorEnAbb(TAbb abb)
 
 TAbb consAbb(TInfo dato, TAbb izq, TAbb der) { 
     
-    TAbb abb = new _rep_abb;
+    TAbb abb;
     abb->dato = dato;
     abb->izq = izq;
     abb->der = der;
