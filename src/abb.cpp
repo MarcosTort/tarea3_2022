@@ -22,7 +22,7 @@ void liberarAbb(TAbb abb)
     }
 }
 
-bool esVacioAbb(TAbb abb) { return abb = NULL; }
+bool esVacioAbb(TAbb abb) { return abb == NULL; }
 
 TAbb buscarSubarbol(nat elem, TAbb abb)
 {
