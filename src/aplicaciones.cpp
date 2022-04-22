@@ -117,21 +117,19 @@ void imprimirAbb(TAbb abb)
   imprimiraux(0, abb);
 }
 
-
-
 bool esPerfectoAUX(TAbb abb, nat profundidad, nat nivel)
 {
 
   if (esVacioAbb(abb))
   {
-        // printf("%d", __LINE__);
+    // printf("%d", __LINE__);
 
     return true;
   }
   else if (esVacioAbb(izquierdo(abb)) && esVacioAbb(derecho(abb)))
   {
     // printf("%d", __LINE__);
-    return (profundidad == nivel );
+    return (profundidad == nivel);
   }
   else if (esVacioAbb(izquierdo(abb)) || esVacioAbb(derecho(abb)))
   {
@@ -142,25 +140,25 @@ bool esPerfectoAUX(TAbb abb, nat profundidad, nat nivel)
   else
   {
     // printf("%d", __LINE__);
-    return esPerfectoAUX(izquierdo(abb), profundidad, nivel + 1) 
-        && esPerfectoAUX(derecho(abb), profundidad, nivel + 1);
+    return esPerfectoAUX(izquierdo(abb), profundidad, nivel + 1) && esPerfectoAUX(derecho(abb), profundidad, nivel + 1);
   }
 }
 int maxDepth(TAbb node)
 {
-    if (node == NULL)
-        return -1;
-    else {
-        /* compute the depth of each subtree */
-        int lDepth = maxDepth(izquierdo(node));
-        int rDepth = maxDepth(derecho(node));
- 
-        /* use the larger one */
-        if (lDepth > rDepth)
-            return (lDepth + 1);
-        else
-            return (rDepth + 1);
-    }
+  if (node == NULL)
+    return -1;
+  else
+  {
+    /* compute the depth of each subtree */
+    int lDepth = maxDepth(izquierdo(node));
+    int rDepth = maxDepth(derecho(node));
+
+    /* use the larger one */
+    if (lDepth > rDepth)
+      return (lDepth + 1);
+    else
+      return (rDepth + 1);
+  }
 }
 bool esPerfecto(TAbb abb)
 {
@@ -169,19 +167,19 @@ bool esPerfecto(TAbb abb)
   return esPerfectoAUX(abb, profundidad, nivelInicial);
 }
 
-TBinario menores(double cota, TAbb b)
+TAbb menores(double cota, TAbb b)
 {
   TAbb res;
-  if (cota>0 && b != NULL){
+  if (cota > 0 && b != NULL)
+  {
     TAbb bizq, bder;
-    bizq = menores(cota, b->izq);
-    bder = menores(cota, b->der);
-    if (realInfo(b->dato) < cota)
+    bizq = menores(cota, izquierdo(b));
+    bder = menores(cota, derecho(b));
+    if (realInfo(raiz(b)) < cota)
     {
-      res = new _rep_binario;
-      res->dato = copiaInfo( b->dato);
-      res->izq = bizq;
-      res->der = bder;
+
+     res = consAbb(copiaInfo(raiz(b)), bizq, bder);
+      
     }
     else
     {
@@ -191,13 +189,13 @@ TBinario menores(double cota, TAbb b)
         res = bizq;
       else
       {
-        res = new _rep_binario;
-        res->dato = copiaInfo( b->dato);        res->izq = bizq;
-        res->der = bder;
-        removerDeBinario(natInfo(res->dato), res);
+        res = consAbb(copiaInfo(raiz(b)), bizq, bder);
+        removerDeAbb(natInfo(raiz(res)), res);
       }
     }
-  } else res = NULL;  
+  }
+  else
+    res = NULL;
   return res;
 }
 
