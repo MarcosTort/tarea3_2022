@@ -111,7 +111,7 @@ void imprimiraux(nat nivel, TAbb b)
 void imprimirAbb(TAbb abb)
 {
   imprimiraux(0, abb);
-  printf("\n");
+  // printf("\n");
 }
 bool esPerfectoAUX(TAbb abb, nat profundidad, nat nivel)
 {
