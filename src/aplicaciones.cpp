@@ -110,6 +110,7 @@ void imprimiraux(nat nivel, TAbb b)
 }
 void imprimirAbb(TAbb abb)
 {
+  if (abb == NULL) return
   imprimiraux(0, abb);
   printf("\n");
 }
