@@ -87,7 +87,7 @@ TCadena linealizacion(TAbb abb)
 {
 
   TCadena cad = crearCadena();
-  lineaux(cad, abb);
+  cad = lineaux(cad, abb);
   return cad;
 }
 void aux2(nat nivel, TAbb b)
