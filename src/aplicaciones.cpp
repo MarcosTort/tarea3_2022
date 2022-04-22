@@ -71,7 +71,7 @@ TCadena lineaux(TCadena cad, TAbb b)
 { // LISTO
   if (!esVacioAbb(b))
   {
-    
+
     cad = lineaux(cad, izquierdo(b)); // llegar al menor
     TInfo dato = raiz(b);
     cad = insertarAlFinal(natInfo(dato), realInfo(dato), cad); // insertar de mayor a menor de izq
@@ -92,7 +92,7 @@ TCadena linealizacion(TAbb abb)
 void aux2(nat nivel, TAbb b)
 {
 
-    for (nat i = 0; i < nivel; i++)
+  for (nat i = 0; i < nivel; i++)
     printf("-");
   char *infotxt = infoATexto(raiz(b));
   printf("%s", infotxt);
@@ -117,39 +117,55 @@ void imprimirAbb(TAbb abb)
   imprimiraux(0, abb);
 }
 
+
+
 bool esPerfectoAUX(TAbb abb, nat profundidad, nat nivel)
 {
 
   if (esVacioAbb(abb))
   {
-    return NULL;
-  }
-  else if (esVacioAbb(izquierdo(abb)) || esVacioAbb(derecho(abb)))
-  {
-    return false;
+        // printf("%d", __LINE__);
+
+    return true;
   }
   else if (esVacioAbb(izquierdo(abb)) && esVacioAbb(derecho(abb)))
   {
-    return (profundidad == nivel + 1);
+    // printf("%d", __LINE__);
+    return (profundidad == nivel );
   }
+  else if (esVacioAbb(izquierdo(abb)) || esVacioAbb(derecho(abb)))
+  {
+    // printf("%d", __LINE__);
+    return false;
+  }
+
   else
   {
-    return esPerfectoAUX(izquierdo(abb), profundidad, nivel + 1) && esPerfectoAUX(izquierdo(abb), profundidad, nivel + 1);
+    // printf("%d", __LINE__);
+    return esPerfectoAUX(izquierdo(abb), profundidad, nivel + 1) 
+        && esPerfectoAUX(derecho(abb), profundidad, nivel + 1);
   }
 }
-int profAbb(TAbb abb)
+int maxDepth(TAbb node)
 {
-  int d = 0;
-  while (abb != NULL)
-  {
-    d++;
-    abb = izquierdo(abb);
-  }
-  return d;
+    if (node == NULL)
+        return -1;
+    else {
+        /* compute the depth of each subtree */
+        int lDepth = maxDepth(izquierdo(node));
+        int rDepth = maxDepth(derecho(node));
+ 
+        /* use the larger one */
+        if (lDepth > rDepth)
+            return (lDepth + 1);
+        else
+            return (rDepth + 1);
+    }
 }
 bool esPerfecto(TAbb abb)
 {
-  int profundidad = profAbb(abb);
+  int profundidad = maxDepth(abb);
+  printf("%d", profundidad);
   int nivelInicial = 0;
   return esPerfectoAUX(abb, profundidad, nivelInicial);
 }
