@@ -171,7 +171,7 @@ TAbb copiaAbb(TAbb abb)
     else
     {
         TAbb rt = new _rep_abb;
-        rt->dato = abb->dato;
+        rt->dato = copiaInfo(abb->dato);
         rt->izq = copiaAbb(abb->izq);
         rt->der = copiaAbb(abb->der);
         return rt;
