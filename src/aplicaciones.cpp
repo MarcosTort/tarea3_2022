@@ -75,7 +75,7 @@ TCadena lineaux(TCadena cad, TAbb b)
   {
     lineaux(cad, izquierdo(b)); // llegar al menor
     TInfo dato = raiz(b);
-    insertarAlFinal(natInfo(dato), realInfo(dato), cad); // insertar de mayor a menor de izq
+    cad = insertarAlFinal(natInfo(dato), realInfo(dato), cad); // insertar de mayor a menor de izq
     lineaux(cad, derecho(b));
     return cad;
   }

@@ -41,7 +41,6 @@ void liberarCadena(TCadena cad)
   }
   liberarInfo(cad->dato);
   delete cad;
-  cad = NULL;
 }
 
 // TInfo inicioCad(TCadena cad)
@@ -66,7 +65,7 @@ TCadena cadenaSiguiente(TCadena cad)
   }
   else
   {
-
+    
     return cad->sig;
   }
 };
