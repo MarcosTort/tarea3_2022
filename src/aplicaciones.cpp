@@ -92,15 +92,12 @@ TCadena linealizacion(TAbb abb)
 }
 void aux2(nat nivel, TAbb b)
 {
-  if (!esVacioAbb(derecho(b)) || !esVacioAbb(izquierdo(b)))
-  {
-    printf("\n");
+
     for (nat i = 0; i < nivel; i++)
-      printf("-");
-    char *infotxt = infoATexto(raiz(b));
-    printf("%s", infotxt);
-    delete[] infotxt;
-  }
+    printf("-");
+  char *infotxt = infoATexto(raiz(b));
+  printf("%s", infotxt);
+  delete[] infotxt;
 }
 void imprimiraux(nat nivel, TAbb b)
 {
@@ -108,6 +105,7 @@ void imprimiraux(nat nivel, TAbb b)
   {
     imprimiraux(nivel + 1, derecho(b));
     aux2(nivel, b);
+    printf("\n");
     imprimiraux(nivel + 1, izquierdo(b));
   }
 }
@@ -118,7 +116,6 @@ void imprimirAbb(TAbb abb)
     return;
   }
   imprimiraux(0, abb);
-  printf("\n");
 }
 
 bool esPerfectoAUX(TAbb abb, nat profundidad, nat nivel)
