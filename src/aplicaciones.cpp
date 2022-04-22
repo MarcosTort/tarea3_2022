@@ -92,7 +92,6 @@ TCadena linealizacion(TAbb abb)
 }
 void aux2(nat nivel, TAbb b)
 {
-  printf("\n");
   for (nat i = 0; i < nivel; i++)
     printf("-");
   char *infotxt = infoATexto(raiz(b));
