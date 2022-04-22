@@ -92,7 +92,7 @@ TCadena linealizacion(TAbb abb)
 }
 void aux2(nat nivel, TAbb b)
 {
-  if (!esVacioAbb(derecho(b)) || !esVacioAbb(b))
+  if (!esVacioAbb(derecho(b)) || !esVacioAbb(izquierdo(b)))
   {
     printf("\n");
     for (nat i = 0; i < nivel; i++)
