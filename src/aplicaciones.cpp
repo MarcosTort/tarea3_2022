@@ -6,7 +6,6 @@
 #include <string.h>
 TCadena insertarAlFinal(nat natural, double real, TCadena cad)
 {
-
   cad = insertarAlInicio(natural, real, cad);
   cad = cadenaSiguiente(cad);
   return cad;
@@ -14,7 +13,6 @@ TCadena insertarAlFinal(nat natural, double real, TCadena cad)
 
 TCadena removerPrimero(TCadena cad)
 {
-
   cad = removerDeCadena(natInfo(primeroEnCadena(cad)), cad);
   return cad;
 }
@@ -73,8 +71,8 @@ TCadena lineaux(TCadena cad, TAbb b)
 { // LISTO
   if (!esVacioAbb(b))
   {
-    lineaux(cad, izquierdo(b)); // llegar al menor
     TInfo dato = raiz(b);
+    lineaux(cad, izquierdo(b)); // llegar al menor
     cad = insertarAlFinal(natInfo(dato), realInfo(dato), cad); // insertar de mayor a menor de izq
     lineaux(cad, derecho(b));
     return cad;
