@@ -96,7 +96,7 @@ TInfo mayorEnAbb(TAbb abb)
 TAbb consAbb(TInfo dato, TAbb izq, TAbb der)
 {
 
-    TAbb abb = insertarEnAbb(dato, crearAbb());
+    TAbb abb = new _rep_abb;
     abb->izq = izq;
     abb->der = der;
     return abb;
