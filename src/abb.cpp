@@ -27,34 +27,23 @@ bool esVacioAbb(TAbb abb) { return abb == NULL; }
 TAbb buscarSubarbol(nat elem, TAbb abb)
 {
     if (!esVacioAbb(abb))
-        return NULL;
 
-    if (elem == natInfo(abb->dato))
     {
-        return abb;
+        if (elem == natInfo(abb->dato))
+        {
+            return abb;
+        }
+        else if (elem < natInfo(abb->dato))
+        {
+            return buscarSubarbol(elem, izquierdo(abb));
+        }
+        else if (elem > natInfo(abb->dato))
+        {
+            return buscarSubarbol(elem, derecho(abb));
+        }
+        else
+            return NULL;
     }
-    else if (elem < natInfo(abb->dato))
-    {
-        return buscarSubarbol(elem, izquierdo(abb));
-    }
-    else if (elem > natInfo(abb->dato))
-    {
-        return buscarSubarbol(elem, derecho(abb));
-    }
-    else
-        return NULL;
-}
-
-TAbb searchSubTree(nat elem, TAbb abb)
-{
-    if (abb == NULL)
-        return NULL;
-    if (elem == natInfo(abb->dato))
-        return abb;
-    else if (elem < natInfo(abb->dato))
-        return searchSubTree(elem, abb->izq);
-    else if (elem > natInfo(abb->dato))
-        return searchSubTree(elem, abb->der);
     else
         return NULL;
 }
