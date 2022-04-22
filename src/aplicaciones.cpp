@@ -73,8 +73,8 @@ TCadena lineaux(TCadena cad, TAbb b)
 { // LISTO
   if (!esVacioAbb(b))
   {
-    lineaux(cad, izquierdo(b)); // llegar al mayor
-    TInfo dato = copiaInfo(raiz(b));
+    lineaux(cad, izquierdo(b)); // llegar al menor
+    TInfo dato = raiz(b);
     insertarAlFinal(natInfo(dato), realInfo(dato), cad); // insertar de mayor a menor de izq
     lineaux(cad, derecho(b));
     return cad;
