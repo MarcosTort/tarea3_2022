@@ -71,10 +71,11 @@ TCadena lineaux(TCadena cad, TAbb b)
 { // LISTO
   if (!esVacioAbb(b))
   {
-    lineaux(cad, izquierdo(b)); // llegar al menor
+    
+    cad = lineaux(cad, izquierdo(b)); // llegar al menor
     TInfo dato = raiz(b);
     cad = insertarAlFinal(natInfo(dato), realInfo(dato), cad); // insertar de mayor a menor de izq
-    lineaux(cad, derecho(b));
+    cad = lineaux(cad, derecho(b));
     return cad;
   }
   else
