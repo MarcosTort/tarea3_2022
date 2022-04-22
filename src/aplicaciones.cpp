@@ -169,44 +169,36 @@ bool esPerfecto(TAbb abb)
   return esPerfectoAUX(abb, profundidad, nivelInicial);
 }
 
-TAbb menores(double limite, TAbb abb)
+TBinario menores(double cota, TAbb b)
 {
-  // TAbb res;
-  // if (limite > 0 && abb != NULL)
-  // {
-  //   TAbb bizq, bder;
-  //   bizq = menores(limite, izquierdo(abb));
-  //   bder = menores(limite, derecho(abb));
-  //   if (realInfo(raiz(abb)) < limite)
-  //   {
-  //     res = crearAbb();
-  //     res = insertarEnAbb(copiaInfo(raiz(abb)), res);
-  //     TAbb izq = izquierdo(res);
-  //     TAbb der = derecho(res);
-  //     // izq = bizq;
-  //     // der = bder;
-  //   }
-  //   else
-  //   {
-  //     if (bizq == NULL)
-  //       res = bder;
-  //     else if (bder == NULL)
-  //       res = bizq;
-  //     else
-  //     {
-  //       res = crearAbb();
-  //       res = insertarEnAbb(copiaInfo(raiz(abb)), res);
-  //       TAbb izq = izquierdo(res);
-  //       TAbb der = derecho(res);
-  //       izq = bizq;
-  //       der = bder;
-  //       removerDeAbb(natInfo(raiz(abb)), res);
-  //     }
-  //   }
-  // }
-  // else
-  //   res = NULL;
-  return NULL;
+  TAbb res;
+  if (cota>0 && b != NULL){
+    TAbb bizq, bder;
+    bizq = menores(cota, b->izq);
+    bder = menores(cota, b->der);
+    if (realInfo(b->dato) < cota)
+    {
+      res = new _rep_binario;
+      res->dato = copiaInfo( b->dato);
+      res->izq = bizq;
+      res->der = bder;
+    }
+    else
+    {
+      if (bizq == NULL)
+        res = bder;
+      else if (bder == NULL)
+        res = bizq;
+      else
+      {
+        res = new _rep_binario;
+        res->dato = copiaInfo( b->dato);        res->izq = bizq;
+        res->der = bder;
+        removerDeBinario(natInfo(res->dato), res);
+      }
+    }
+  } else res = NULL;  
+  return res;
 }
 
 TIterador caminoAscendente(nat clave, nat k, TAbb abb)
