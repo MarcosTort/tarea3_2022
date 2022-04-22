@@ -92,6 +92,10 @@ TCadena linealizacion(TAbb abb)
 }
 void aux2(nat nivel, TAbb b)
 {
+  if (!esVacioAbb(izquierdo(b)) && !esVacioAbb(izquierdo(b)))
+  {
+    printf("\n");
+  }
   for (nat i = 0; i < nivel; i++)
     printf("-");
   char *infotxt = infoATexto(raiz(b));
@@ -109,7 +113,10 @@ void imprimiraux(nat nivel, TAbb b)
 }
 void imprimirAbb(TAbb abb)
 {
-  if (esVacioAbb(abb)) {return;}
+  if (esVacioAbb(abb))
+  {
+    return;
+  }
   imprimiraux(0, abb);
   printf("\n");
 }
