@@ -165,7 +165,6 @@ int maxDepth(TAbb node)
 bool esPerfecto(TAbb abb)
 {
   int profundidad = maxDepth(abb);
-  printf("%d", profundidad);
   int nivelInicial = 0;
   return esPerfectoAUX(abb, profundidad, nivelInicial);
 }
