@@ -178,8 +178,7 @@ TAbb menores(double cota, TAbb b)
     if (realInfo(raiz(b)) < cota)
     {
 
-     res = consAbb(copiaInfo(raiz(b)), bizq, bder);
-      
+      res = consAbb(copiaInfo(raiz(b)), bizq, bder);
     }
     else
     {
@@ -199,54 +198,53 @@ TAbb menores(double cota, TAbb b)
   return res;
 }
 
+int minimo(int a, int b)
+{
+  if (a < b)
+    return a;
+  else
+    return b;
+}
 TIterador caminoAscendente(nat clave, nat k, TAbb abb)
 {
-  TAbb aux = abb;
+  int count = 1;
   TIterador iter = crearIterador();
-  while (aux != NULL)
+  TAbb aux = abb;
+  while (clave != natInfo(raiz(aux)))
   {
-    if (natInfo(raiz(aux)) == clave)
+    if (!esVacioAbb(aux))
     {
-      if (k == 0)
+      agregarAIterador(natInfo(raiz(aux)), iter);
+      count++;
+      // SI EL BUSCADO ES MAS GRANDE QUE LA RAIZ ACTUAL
+      if (clave > natInfo(raiz(aux)))
       {
-        agregarAIterador(natInfo(raiz(aux)), iter);
-        return iter;
-      }
-      else
-      {
-        k--;
-        aux = izquierdo(aux);
-      }
-    }
-    else if (natInfo(raiz(aux)) > clave)
-    {
-      if (k == 0)
-      {
-        agregarAIterador(natInfo(raiz(aux)), iter);
-        return iter;
-      }
-      else
-      {
-        k--;
-        aux = izquierdo(aux);
-      }
-    }
-    else
-    {
-      if (k == 0)
-      {
-        agregarAIterador(natInfo(raiz(aux)), iter);
-        return iter;
-      }
-      else
-      {
-        k--;
         aux = derecho(aux);
+      }
+      else if (clave < natInfo(raiz(aux)))
+
+      {
+        aux = izquierdo(aux);
       }
     }
   }
-  return iter;
+  agregarAIterador(natInfo(raiz(aux)), iter);
+
+  TIterador res = reversoDeIterador(iter);
+  reiniciarIterador(res);
+  liberarIterador(iter);
+  TIterador auxIter = crearIterador();
+
+  for (int i = 0; i < minimo(count, k); i++)
+  {
+    nat auxNat = actualEnIterador(res);
+    agregarAIterador(auxNat, auxIter);
+    avanzarIterador(res);
+  }
+  liberarIterador(res);
+  return auxIter;
 }
+
 
 void imprimirPalabrasCortas(nat k, TPalabras palabras)
 {
