@@ -24,8 +24,8 @@ El comando
 imprime comentario.
 
 El comando
-reiniciar
-libera la memoria asignada a 'cad', 'colCads' e 'iter' y los vuelve a crear.
+reiniciarEstructruras
+libera la memoria asignada a 'cad', 'colCads', 'iter', 'abb' y 'palabras' y los vuelve a crear.
 
   Laboratorio de Programación 2.
   InCo-FIng-UDELAR

@@ -32,10 +32,10 @@ all: principal
 
 ARCHIVO_ENTREGA=Entrega3.tar.gz
 
-ENTREGAR = cadena iterador abb aplicaciones palabras # colCadenas
+ENTREGAR = cadena iterador abb aplicaciones # colCadenas
 
 
-MODULOS = $(ENTREGAR) utils info 
+MODULOS = $(ENTREGAR) utils info palabras
 
 # directorios
 HDIR    = include
@@ -107,7 +107,7 @@ $(EJECUTABLE):$(ODIR)/$(PRINCIPAL).o $(OS)
 	$(LD) $(CCFLAGS) $^ -o $@
 
 # casos de prueba
-CASOS = 11 12 13 14 15 31 32 33 34 35 51 52 53 54 55 56 57 58 59 60
+CASOS = 11 12 13 14 15 31 32 33 34 35 51 52 53 54 55 56 57 58 59 60 A B C D E M
 
 
 # cadena de archivos, con directorio y extensión
@@ -227,7 +227,7 @@ check-syntax:
 
 
 LIB = tarea.a
-$(LIB):	$(ODIR)/utils.o $(ODIR)/info.o $(ODIR)/$(PRINCIPAL).o
+$(LIB):	$(ODIR)/utils.o $(ODIR)/info.o $(ODIR)/palabras.o $(ODIR)/$(PRINCIPAL).o
 	ar -qc $@ $^	
 
 
