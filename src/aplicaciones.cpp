@@ -177,7 +177,6 @@ TAbb menores(double cota, TAbb b)
     bder = menores(cota, derecho(b));
     if (realInfo(raiz(b)) < cota)
     {
-
       res = consAbb(copiaInfo(raiz(b)), bizq, bder);
     }
     else
@@ -244,30 +243,110 @@ TIterador caminoAscendente(nat clave, nat k, TAbb abb)
   liberarIterador(res);
   return auxIter;
 }
-
-
-void imprimirPalabrasCortas(nat k, TPalabras palabras)
+ArregloChars reverse(ArregloChars array, nat size)
+{
+  for (nat i = 0; i < size / 2; i++)
+  {
+    nat aux = array[i];
+    array[i] = array[size - i - 1];
+    array[size - i - 1] = aux;
+  }
+  return array;
+}
+void imprimirPalabrasCortasAux(nat i, int k, TPalabras palabras, ArregloChars salida)
 {
 
   if (palabras != NULL)
   {
+    // printf("nashe    %c\n", letra(palabras));
+    // printf("%d\n", k);
+    salida[i - k] = letra(palabras);
 
-    if (k > 0)
+    if (k >= 0 && letra(palabras) == '\0')
     {
-      printf("%c", letra(palabras));
+      // printf("%d\n", k);
+      printf("%s\n", salida);
     }
-    else
-    {
-      printf("\n");
-    }
-    imprimirPalabrasCortas(k - 1, subarboles(palabras));
-    imprimirPalabrasCortas(k - 1, siguientes(palabras));
+
+    imprimirPalabrasCortasAux(i, k - 1, subarboles(palabras), salida);
+    if (k != i)
+      imprimirPalabrasCortasAux(i, k, siguientes(palabras), salida);
   }
+}
+
+void imprimirPalabrasCortas(nat k, TPalabras palabras)
+{
+  ArregloChars salida = new char[k + 1];
+  palabras = subarboles(palabras);
+  while (palabras != NULL)
+  {
+
+    imprimirPalabrasCortasAux(k, k, palabras, salida);
+    palabras = siguientes(palabras);
+  }
+  delete[] salida;
+}
+
+// int largoArray(ArregloChars array)
+// {
+//   int i = 0;
+//   while (array[i] != NULL)
+//   {
+//     i++;
+//   }
+//   return i;
+// }
+
+TPalabras buscarFinPrefijoAux(ArregloChars prefijo, TPalabras palabras, int nivel)
+{
+  if (palabras != NULL)
+  {
+    palabras = subarboles(palabras);
+    while (palabras != NULL && prefijo[nivel] != letra(palabras))
+    {
+      palabras = siguientes(palabras);
+    }
+    if (palabras != NULL && prefijo[nivel + 1] != '\0')
+
+    {
+      palabras = buscarFinPrefijoAux(prefijo, palabras, nivel + 1);
+    }
+    return palabras;
+  }
+  else
+    return NULL;
 }
 
 TPalabras buscarFinPrefijo(ArregloChars prefijo, TPalabras palabras)
 {
-  return NULL;
+  return buscarFinPrefijoAux(prefijo, palabras, 0);
 }
 
 // auxiliares
+
+void aux2(nat nivel, TPalabras b)
+{
+  for (nat i = 0; i < nivel; i++)
+    printf("-");
+  char infotxt = letra(b);
+  printf("%c", infotxt);
+}
+void imprimiraux(nat nivel, TPalabras b)
+{
+  if (b != NULL)
+  {
+    imprimiraux(nivel + 1, subarboles(b));
+    aux2(nivel, b);
+    printf("\n");
+    imprimiraux(nivel + 1, siguientes(b));
+  }
+}
+
+void pal(TPalabras abb)
+{
+  if (abb == NULL)
+  {
+    return;
+  }
+  imprimiraux(0, abb);
+}
