@@ -253,7 +253,7 @@ ArregloChars reverse(ArregloChars array, nat size)
   }
   return array;
 }
-void imprimirPalabrasCortasAux(nat i, int k, TPalabras palabras, ArregloChars salida)
+void imprimirPalabrasCortasAux(int i, int k, TPalabras palabras, ArregloChars salida)
 {
 
   if (palabras != NULL)
