@@ -276,7 +276,7 @@ void imprimirPalabrasCortasAux(int i, int k, TPalabras palabras, ArregloChars sa
 
 void imprimirPalabrasCortas(nat k, TPalabras palabras)
 {
-  ArregloChars salida = new char[k + 1];
+  ArregloChars salida = new char[1000];
   palabras = subarboles(palabras);
   while (palabras != NULL)
   {
